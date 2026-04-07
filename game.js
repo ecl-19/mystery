@@ -1,9 +1,11 @@
 const Game = {
 
   state: {
-    visited: new Set(),   // location IDs with story content, successfully visited
-    flags:   new Set(),   // state flags set by visiting locations
-    phase:   'playing'    // 'playing' | 'done'
+    visited:   new Set(),   // location IDs with story content, successfully visited
+    checked:   new Set(),   // blank location IDs visited
+    informants: new Set(),  // informant indices consulted
+    flags:     new Set(),   // state flags set by visiting locations
+    phase:     'playing'    // 'playing' | 'done'
   },
 
   // ── Startup ──────────────────────────────────────────────────────────────
@@ -67,7 +69,11 @@ const Game = {
       this.markPin(id, 'visited');
       this.setContent(`<h3>${loc.name}</h3><p>${this.fmt(entry.text)}</p>`);
     } else {
-      // Blank location — doesn't count toward score
+      // Blank location
+      if (!this.state.checked.has(id)) {
+        this.state.checked.add(id);
+        this.updateScore();
+      }
       this.markPin(id, 'checked');
       this.setContent(
         `<h3>${loc.name}</h3>` +
@@ -155,6 +161,10 @@ const Game = {
 
   consultInformant(i) {
     const inf = STORY.informants[i];
+    if (!this.state.informants.has(i)) {
+      this.state.informants.add(i);
+      this.updateScore();
+    }
     this.setContent(`<h2>${inf.name}</h2><p>${this.fmt(inf.text)}</p>`);
   },
 
@@ -169,10 +179,11 @@ const Game = {
       </div>
     `).join('');
 
+    const total = this.state.visited.size + this.state.checked.size + this.state.informants.size;
     this.setContent(`
       <h2>Present Your Solution</h2>
       <p class="muted" style="margin-bottom:14px">
-        You have visited ${this.state.visited.size} relevant location(s). Present your conclusions when ready.
+        You have visited ${total} location(s). Present your conclusions when ready.
       </p>
       ${questions}
       <button class="big-btn" onclick="Game.submitSolution()">Submit Solution</button>
@@ -203,7 +214,7 @@ const Game = {
       <div class="outro">${this.fmt(STORY.outro)}</div>
       <p class="final-score">
         ${correct} of ${STORY.questions.length} question${STORY.questions.length !== 1 ? 's' : ''} answered correctly.<br>
-        You visited ${this.state.visited.size} relevant location${this.state.visited.size !== 1 ? 's' : ''} before solving the case.
+        You visited ${this.state.visited.size + this.state.checked.size + this.state.informants.size} location${(this.state.visited.size + this.state.checked.size + this.state.informants.size) !== 1 ? 's' : ''} before solving the case.
       </p>
     `);
   },
@@ -213,6 +224,8 @@ const Game = {
   showSave() {
     const code = btoa(JSON.stringify({
       v: [...this.state.visited],
+      k: [...this.state.checked],
+      i: [...this.state.informants],
       f: [...this.state.flags],
       p: this.state.phase
     }));
@@ -252,17 +265,21 @@ const Game = {
       const data = JSON.parse(atob(raw));
       if (!Array.isArray(data.v) || !Array.isArray(data.f)) throw new Error();
 
-      this.state.visited = new Set(data.v);
-      this.state.flags   = new Set(data.f);
-      this.state.phase   = data.p === 'done' ? 'done' : 'playing';
+      this.state.visited   = new Set(data.v);
+      this.state.checked   = new Set(data.k ?? []);
+      this.state.informants = new Set(data.i ?? []);
+      this.state.flags     = new Set(data.f);
+      this.state.phase     = data.p === 'done' ? 'done' : 'playing';
 
       // Restore pin colours
       for (const id of this.state.visited) this.markPin(id, 'visited');
+      for (const id of this.state.checked) this.markPin(id, 'checked');
 
+      const total = this.state.visited.size + this.state.checked.size + this.state.informants.size;
       this.updateScore();
       this.setContent(
         `<h2>Game Loaded</h2>` +
-        `<p>Progress restored. You have visited ${this.state.visited.size} relevant location(s).</p>` +
+        `<p>Progress restored. You have visited ${total} location(s).</p>` +
         (this.state.phase === 'done'
           ? `<p class="muted" style="margin-top:8px">This save is from a completed case.</p>`
           : '')
@@ -283,7 +300,7 @@ const Game = {
   },
 
   updateScore() {
-    const n = this.state.visited.size;
+    const n = this.state.visited.size + this.state.checked.size + this.state.informants.size;
     document.getElementById('score-display').textContent =
       `${n} location${n !== 1 ? 's' : ''} visited`;
   },
