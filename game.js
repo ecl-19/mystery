@@ -108,7 +108,36 @@ const Game = {
 
   readNewspaper(i) {
     const n = STORY.newspapers[i];
-    this.setContent(`<h2>${n.name}</h2><p>${this.fmt(n.text)}</p>`);
+
+    const articles = n.articles.map(a => {
+      const body = a.text.split(/\n\n+/)
+        .map(p => `<p>${p.trim().replace(/\n/g, ' ')}</p>`)
+        .join('');
+      return `
+        <div class="np-article">
+          <div class="np-headline">${a.headline}</div>
+          <div class="np-body">${body}</div>
+        </div>`;
+    }).join('');
+
+    document.getElementById('newspaper-content').innerHTML = `
+      <div class="np-masthead">
+        <div class="np-name">${n.name}</div>
+      </div>
+      <div class="np-meta">
+        <span>${n.date ?? ''}</span>
+        <span class="np-meta-center">${n.edition ?? ''}</span>
+        <span>${n.price ?? ''}</span>
+      </div>
+      <div class="np-articles">${articles}</div>
+    `;
+
+    document.getElementById('newspaper-content').scrollTop = 0;
+    document.getElementById('newspaper-overlay').classList.add('open');
+  },
+
+  closeNewspaper() {
+    document.getElementById('newspaper-overlay').classList.remove('open');
   },
 
   // ── Directory ────────────────────────────────────────────────────────────

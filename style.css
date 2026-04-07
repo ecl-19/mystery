@@ -450,3 +450,142 @@ body {
   font-weight: bold;
   line-height: 1.7;
 }
+
+/* ── Newspaper modal ── */
+
+#newspaper-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+#newspaper-overlay.open {
+  display: flex;
+}
+
+#newspaper-modal {
+  background: #f4eccc;
+  color: #1a1208;
+  font-family: Georgia, 'Times New Roman', serif;
+  max-width: 740px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7), inset 0 0 80px rgba(180, 150, 80, 0.15);
+  border: 1px solid #b8a060;
+}
+
+/* Close bar — stays pinned at top while content scrolls */
+#newspaper-closebar {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 12px 0;
+  background: #f4eccc;
+}
+
+#newspaper-close {
+  background: none;
+  border: 1px solid #a08050;
+  color: #5a3a10;
+  font-family: Georgia, serif;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: background 0.12s;
+}
+
+#newspaper-close:hover {
+  background: #e8dca8;
+}
+
+/* Scrollable paper body */
+#newspaper-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 40px 36px;
+}
+
+#newspaper-content::-webkit-scrollbar { width: 8px; }
+#newspaper-content::-webkit-scrollbar-track { background: #e8dca8; }
+#newspaper-content::-webkit-scrollbar-thumb { background: #a08850; border-radius: 4px; }
+
+/* Masthead */
+.np-masthead {
+  text-align: center;
+  border-top: 4px double #1a1208;
+  border-bottom: 4px double #1a1208;
+  padding: 10px 0 8px;
+  margin-bottom: 0;
+}
+
+.np-name {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+/* Meta strip: date | edition | price */
+.np-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid #1a1208;
+  padding: 5px 2px 6px;
+  margin-bottom: 16px;
+  color: #2a1a08;
+}
+
+.np-meta-center {
+  text-align: center;
+  font-style: italic;
+}
+
+/* Articles — two column layout */
+.np-articles {
+  column-count: 2;
+  column-gap: 28px;
+  column-rule: 1px solid #c8b070;
+}
+
+.np-article {
+  break-inside: avoid;
+  margin-bottom: 18px;
+}
+
+.np-headline {
+  font-size: 0.82rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  border-bottom: 1px solid #8a7040;
+  padding-bottom: 3px;
+  margin-bottom: 6px;
+}
+
+.np-body {
+  font-size: 0.76rem;
+  line-height: 1.68;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.np-body p {
+  margin: 0;
+}
+
+.np-body p + p {
+  text-indent: 1.2em;
+}

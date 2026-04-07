@@ -4,8 +4,8 @@
 //   meta        — title shown in the header
 //   intro       — displayed on load (the case briefing)
 //   outro       — displayed after submitting the solution
-//   newspapers  — array of { name, text }
-//   directory   — { "Name": "locationId", ... } — exact match, case-insensitive
+//   newspapers  — array of { name, date, edition, price, articles: [{headline, text}] }
+//   directory   — { "Name": "locationId", ... } — fuzzy matched
 //   informants  — array of { name, text }
 //   locations   — story content for specific location IDs:
 //                   text          (string)  — what the player reads on arrival
@@ -41,22 +41,76 @@ Voss was apprehended at Dover attempting to board a packet steamer to Calais. Th
 
   newspapers: [
     {
-      name: "The Morning Chronicle, 3rd November",
-      text:
-`SUSPICIOUS DEATH IN ALDGATE
+      name: "The Morning Chronicle",
+      date: "Monday, 3rd November, 1895",
+      edition: "Morning Edition",
+      price: "One Penny",
+      articles: [
+        {
+          headline: "Suspicious Death in Aldgate",
+          text:
+`The body of a middle-aged gentleman was discovered yesterday morning at lodgings in Aldgate High Street, after neighbours reported that the occupant had not been seen for several days. A woman believed to be the deceased's landlady was found in considerable distress at the scene.
 
-The body of a middle-aged gentleman was discovered yesterday morning at lodgings in Aldgate High Street, after neighbours reported that the occupant had not been seen for several days. A woman believed to be the deceased's landlady was found in considerable distress at the scene.
+An inspector from the Criminal Investigation Department has been appointed to the matter. The cause of death has not been confirmed. The deceased has not been named pending notification of next of kin. Inquiries may be directed to Inspector Lestrade of Scotland Yard.`
+        },
+        {
+          headline: "Dense Fog Expected Through the Week",
+          text:
+`The Meteorological Office has issued a caution to residents of the metropolitan area as a dense advection fog settled over London yesterday evening and is expected to persist well into the coming week.
 
-An inspector from the Criminal Investigation Department has been appointed. The cause of death has not been confirmed. The deceased has not been named pending notification of next of kin.`
+Visibility on the Thames was reported at less than twenty yards by midnight, prompting the Port of London Authority to restrict river traffic until conditions improve. Several omnibus services were delayed or suspended throughout the City and East End. Residents are advised to carry lanterns when travelling after dark.`
+        },
+        {
+          headline: "A Notable Evening at the National Sporting Club",
+          text:
+`An evening of pugilism at the National Sporting Club on Tuesday produced a result that surprised many observers, when challenger Mr. Patrick Doyle of Whitechapel defeated the reigning middleweight champion Mr. George Rennie in the ninth round.
+
+The bout was keenly contested through the early rounds, with Rennie displaying his customary footwork and economy of movement. Doyle's persistence and considerable reach, however, told in the later stages, and a well-placed combination in the ninth brought proceedings to a close.`
+        },
+        {
+          headline: "Late Parliamentary Business",
+          text:
+`The House rose at half past eleven on Tuesday evening following a lengthy debate on proposed amendments to the Merchant Shipping Act. The Colonial Secretary spoke at length on the question of liability in cases of cargo loss.
+
+The Prime Minister is expected to address the Commons on Thursday regarding the situation in South Africa, which continues to attract considerable public interest. A full report will appear in tomorrow's edition.`
+        }
+      ]
     },
     {
-      name: "The Cryptographers' Quarterly, October Issue",
-      text:
-`PATENT APPLICATIONS: AUTUMN REVIEW
-
-The Patent Office has received a record fourteen cipher-related applications this quarter. Among the most notable is a submission by Mr. Edwin Harrington, a civil servant attached to the War Office, whose substitution-transposition method has been described by colleagues as technically remarkable — "twenty years ahead of current practice," in the words of one reviewer.
+      name: "The Cryptographers' Quarterly",
+      date: "October, 1895",
+      edition: "Vol. XII, No. 4",
+      price: "Sixpence",
+      articles: [
+        {
+          headline: "Patent Applications: Autumn Review",
+          text:
+`The Patent Office has received a record fourteen cipher-related applications this quarter. Among the most notable is a submission by Mr. Edwin Harrington, a civil servant attached to the War Office, whose substitution-transposition method has been described by colleagues as technically remarkable — "twenty years ahead of current practice," in the words of one reviewer.
 
 Patent applications of a technical nature require a named professional witness to attest to a method's novelty. Mr. Harrington's witness is listed as Dr. Karl Voss, a physician practising in Holborn, who confirmed the method's completeness and originality. The application is currently under review.`
+        },
+        {
+          headline: "Mechanical Cipher Devices: A Continental Survey",
+          text:
+`Correspondents from Vienna and Berlin report continued interest among commercial and diplomatic concerns in mechanical encipherment devices. Several new instruments were exhibited at the Leipzig Technical Fair in September, representing advances upon the rotary disc methods first demonstrated earlier in the decade.
+
+The devices have attracted scepticism from professional cryptographers, who note that mechanical regularity introduces characteristic patterns that a skilled analyst may exploit. The consensus remains that a well-designed manual cipher, rigorously applied, offers superior security to any mechanical substitute. Nevertheless, demand from commercial houses for reliable encipherment without specialist training suggests a ready market, and further development is anticipated.`
+        },
+        {
+          headline: "Obituary: Professor Henry Alderton, F.R.S.",
+          text:
+`It is with regret that we record the death of Professor Henry Alderton, Fellow of the Royal Society and for thirty years a leading figure in the study of historical cryptography. Professor Alderton's edition of the Bacon-Wilkins correspondence, published in 1881, remains the standard reference in the field.
+
+He is survived by his wife, two sons, and a daughter. A memorial lecture in his honour is to be established at King's College, London. Tributes from correspondents will appear in our next issue.`
+        },
+        {
+          headline: "Society Notes",
+          text:
+`The autumn meeting of the Society will be held on the 19th of November at the usual rooms in Pall Mall. Members are invited to submit papers for the spring lecture programme by the end of the year.
+
+The Secretary notes that subscriptions for the current year remain outstanding in several cases and requests that these be settled at the earliest convenience. New members may apply in writing to the Honorary Secretary.`
+        }
+      ]
     }
   ],
 

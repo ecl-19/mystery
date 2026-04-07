@@ -47,6 +47,16 @@
     </main>
   </div>
 
+  <!-- Newspaper modal -->
+  <div id="newspaper-overlay" onclick="Game.closeNewspaper()">
+    <div id="newspaper-modal" onclick="event.stopPropagation()">
+      <div id="newspaper-closebar">
+        <button id="newspaper-close" onclick="Game.closeNewspaper()">&#x2715; Close</button>
+      </div>
+      <div id="newspaper-content"></div>
+    </div>
+  </div>
+
   <script src="locations.js"></script>
   <script src="stories/case1.js"></script>
   <script src="game.js"></script>
