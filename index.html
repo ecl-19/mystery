@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mystery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+
+    <header id="header">
+      <h1 id="case-title">Loading...</h1>
+      <span id="score-display"></span>
+    </header>
+
+    <main id="main">
+
+      <section id="map-panel">
+        <div id="map-container">
+          <img id="map-img" src="map.png" alt="Map"
+            onerror="document.getElementById('map-container').style.display='none'; document.getElementById('map-missing').style.display='flex'">
+          <div id="pins-layer"></div>
+        </div>
+        <div id="map-missing">
+          <p>Place your map image as <strong>map.png</strong><br>in the game folder, then reload.</p>
+        </div>
+      </section>
+
+      <aside id="side-panel">
+        <nav id="action-bar">
+          <button class="action-btn" onclick="Game.showIntro()">Case File</button>
+          <button class="action-btn" onclick="Game.showNewspapers()">Newspapers</button>
+          <button class="action-btn" onclick="Game.showDirectory()">Directory</button>
+          <button class="action-btn" onclick="Game.showInformants()">Informants</button>
+          <button class="action-btn solve" onclick="Game.startSolve()">Solve Case</button>
+        </nav>
+        <div id="text-panel">
+          <div id="text-content"></div>
+        </div>
+        <div id="save-bar">
+          <button onclick="Game.showSave()">Save Game</button>
+          <button onclick="Game.showLoad()">Load Game</button>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+
+  <script src="locations.js"></script>
+  <script src="stories/case1.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
