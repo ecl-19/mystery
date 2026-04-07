@@ -133,19 +133,42 @@ const Game = {
     const result = document.getElementById('dir-result');
     if (!input || !result) return;
 
-    const query = input.value.trim();
-    const match = Object.entries(STORY.directory)
-      .find(([name]) => name.toLowerCase() === query.toLowerCase());
+    const raw = input.value.trim();
+    if (!raw) return;
 
-    if (match) {
-      const [name, locId] = match;
-      const locName = LOCATIONS[locId]?.name ?? 'Unknown';
+    const queryTokens = this.normalise(raw).split(' ').filter(Boolean);
+    const matches = [];
+
+    for (const [name, locId] of Object.entries(STORY.directory)) {
+      const entryTokens = this.normalise(name).split(' ').filter(Boolean);
+      let fuzzy = false;
+      let allMatched = true;
+
+      for (const qt of queryTokens) {
+        // Allow 1 edit per 4 characters; short words must match exactly
+        const threshold = Math.floor(qt.length / 4);
+        const bestDist  = Math.min(...entryTokens.map(et => this.levenshtein(qt, et)));
+        if (bestDist > threshold) { allMatched = false; break; }
+        if (bestDist > 0) fuzzy = true;
+      }
+
+      if (allMatched) matches.push({ name, locId, fuzzy });
+    }
+
+    // Exact (non-fuzzy) matches first
+    matches.sort((a, b) => a.fuzzy - b.fuzzy);
+
+    if (matches.length === 0) {
       result.innerHTML =
-        `<div class="dir-result"><strong>${name}</strong> — ` +
-        `Location <strong>${locId}</strong>, ${locName}.</div>`;
+        `<div class="dir-result muted">No listing found for &#8220;${raw}&#8221;.</div>`;
     } else {
-      result.innerHTML =
-        `<div class="dir-result muted">No listing found for &#8220;${query}&#8221;.</div>`;
+      result.innerHTML = matches.map(({ name, locId, fuzzy }) => {
+        const locName = LOCATIONS[locId]?.name ?? 'Unknown';
+        return `<div class="dir-result">` +
+          `<strong>${name}</strong> — Location <strong>${locId}</strong>, ${locName}.` +
+          (fuzzy ? ` <span class="muted">(closest match)</span>` : '') +
+          `</div>`;
+      }).join('');
     }
   },
 
@@ -307,6 +330,29 @@ const Game = {
 
   fmt(text) {
     return (text ?? '').replace(/\n/g, '<br>');
+  },
+
+  // Strip punctuation, lowercase, collapse whitespace
+  normalise(str) {
+    return (str ?? '').toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, ' ').trim();
+  },
+
+  // Levenshtein edit distance between two strings
+  levenshtein(a, b) {
+    if (a === b) return 0;
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
+    const row = Array.from({ length: b.length + 1 }, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) {
+      let prev = row[0];
+      row[0] = i;
+      for (let j = 1; j <= b.length; j++) {
+        const temp = row[j];
+        row[j] = a[i - 1] === b[j - 1] ? prev : 1 + Math.min(prev, row[j], row[j - 1]);
+        prev = temp;
+      }
+    }
+    return row[b.length];
   }
 };
 
