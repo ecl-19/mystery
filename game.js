@@ -211,7 +211,7 @@ const Game = {
 
     if (matches.length === 0) {
       result.innerHTML =
-        `<div class="dir-result muted">No listing found for &#8220;${raw}&#8221;.</div>`;
+        `<div class="dir-result muted">No listing found for &#8220;${this.escapeHtml(raw)}&#8221;.</div>`;
     } else {
       result.innerHTML = matches.map(({ name, entry, fuzzy }) => {
         const areaName = LOCATIONS[entry.area]?.name ?? 'Unknown';
@@ -278,7 +278,7 @@ const Game = {
       return `
         <div class="result-block">
           <strong>${q.text}</strong><br>
-          Your answer: <span class="${ok ? 'ok' : 'wrong'}">${given || '(blank)'}</span>
+          Your answer: <span class="${ok ? 'ok' : 'wrong'}">${this.escapeHtml(given) || '(blank)'}</span>
           ${ok ? ' — Correct.' : ' — Incorrect.'}
         </div>`;
     }).join('');
@@ -393,6 +393,10 @@ const Game = {
 
   fmt(text) {
     return (text ?? '').replace(/\n/g, '<br>');
+  },
+
+  escapeHtml(str) {
+    return (str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   },
 
   // Strip punctuation, lowercase, collapse whitespace
