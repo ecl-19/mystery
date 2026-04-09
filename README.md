@@ -45,7 +45,7 @@ mystery/
   game.js             # Game logic
   locations.js        # 15 area pins, each with ~17 addresses (fixed across cases)
   directory.js        # Shared street directory (~120 Victorian names)
-  map.png             # London map image (not in repository)
+  map.png             # London map image (public domain — see Map Credit below)
   stories/
     case1.js          # Case One: The Aldgate Cipher
     case2.js          # Case Two: The Woodhouse Affair
