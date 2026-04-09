@@ -115,13 +115,13 @@ The Secretary notes that subscriptions for the current year remain outstanding i
   ],
 
   directory: {
-    "Harrington, Edwin":   "15",
-    "Voss, Karl":          "21",
-    "Voss, Dr. Karl":      "21",
-    "Scotland Yard":       "1",
-    "Lestrade, Inspector": "1",
-    "Crabb, Mrs.":         "10",
-    "Cryptographers' Quarterly": "11"
+    "Harrington, Edwin":        { area: "10", address: "14 Aldgate High Street" },
+    "Voss, Karl":               { area: "7",  address: "18 Southampton Row" },
+    "Voss, Dr. Karl":           { area: "7",  address: "18 Southampton Row" },
+    "Scotland Yard":            { area: "5",  address: "Scotland Yard, Whitehall" },
+    "Lestrade, Inspector":      { area: "5",  address: "Scotland Yard, Whitehall" },
+    "Crabb, Mrs.":              { area: "7",  address: "3 Drury Lane" },
+    "Cryptographers' Quarterly": { area: "8", address: "47 Fleet Street" }
   },
 
   informants: [
@@ -139,7 +139,7 @@ The Secretary notes that subscriptions for the current year remain outstanding i
 
   locations: {
 
-    "1": {
+    "5:Scotland Yard, Whitehall": {
       text:
 `Inspector Lestrade receives you at Scotland Yard with visible relief. He shares what the police have established: Harrington was found by his landlady, a Mrs. Crabb of Covent Garden, who called at the lodgings after a week's silence and no reply to her notes.
 
@@ -149,7 +149,7 @@ Lestrade authorises you to examine the lodgings at Aldgate at your discretion.`,
       sets_state: ["police_clearance"]
     },
 
-    "10": {
+    "7:3 Drury Lane": {
       text:
 `Mrs. Crabb is a stout, practical woman shaken rather thoroughly out of her composure. She tells you that a visitor called upon Mr. Harrington on the evening of the 27th of October — a tall, well-dressed man with what she describes as "a faint foreign accent, very polished." She heard raised voices from the floor above, which was most unlike Mr. Harrington.
 
@@ -159,14 +159,14 @@ She also mentions, almost in passing, that Mr. Harrington had spoken very highly
       sets_state: ["suspect_voss"]
     },
 
-    "11": {
+    "8:47 Fleet Street": {
       text:
 `The editor of The Cryptographers' Quarterly, a Mr. Baines, remembers Harrington well — "precise, cautious, and unusually private for a man in his field." He confirms that Harrington's patent witness was a Dr. Karl Voss of Holborn, a physician with some interest in applied mathematics.
 
 Baines lowers his voice. In recent months, Voss had been approaching several cryptographers on behalf of what he described as "a private European concern" seeking to acquire advanced cipher methods. Harrington had rebuffed him — firmly, and more than once. "The last time I saw Harrington," Baines says, "he told me Voss had become quite insistent. Almost threatening, he said."`
     },
 
-    "15": {
+    "10:14 Aldgate High Street": {
       text:
 `Lestrade's authorisation gains you access to Harrington's lodgings. The room shows clear signs of a search. A locked desk drawer has been forced open and left empty. A bound index on the shelf lists three volumes of cipher notes; only Volumes I and II remain. Volume III — subtitled "Transposition Key: Final Method" — is absent.
 
@@ -176,7 +176,7 @@ On the desk lies the unfinished letter: "Dear V, I have reconsidered your offer.
       sets_state: ["found_cipher_notes"]
     },
 
-    "21": {
+    "7:18 Southampton Row": {
       text:
 `Dr. Voss's surgery is shuttered. A neighbour reports that he departed abruptly two days ago, leaving no forwarding address and no explanation.
 

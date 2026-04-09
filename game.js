@@ -11,6 +11,7 @@ const Game = {
   // ── Startup ──────────────────────────────────────────────────────────────
 
   init() {
+    this._directory = Object.assign({}, window.DIRECTORY ?? {}, STORY.directory ?? {});
     document.getElementById('case-title').textContent = STORY.meta.title;
     this.renderPins();
     this.setContent(`<h2>Case File</h2><p>${this.fmt(STORY.intro)}</p>`);
@@ -36,20 +37,40 @@ const Game = {
     }
   },
 
-  visitLocation(id) {
+  visitLocation(areaId) {
     if (this.state.phase === 'done') return;
+    const area = LOCATIONS[areaId];
+    if (!area) return;
 
-    const loc   = LOCATIONS[id];
-    const entry = STORY.locations[id];
+    const items = area.addresses.map((addr, i) => {
+      const key = `${areaId}:${addr}`;
+      let marker = '&nbsp;', cls = '';
+      if (this.state.visited.has(key))      { marker = '&#10003;'; cls = 'addr-visited'; }
+      else if (this.state.checked.has(key)) { marker = '&ndash;';  cls = 'addr-checked'; }
+      return `<div class="address-item ${cls}" onclick="Game.visitAddress('${areaId}', ${i})">` +
+        `<span class="addr-marker">${marker}</span><span>${addr}</span></div>`;
+    }).join('');
 
-    if (!loc) return;
+    this.setContent(`<h3>${area.name}</h3><div class="address-list">${items}</div>`);
+  },
+
+  visitAddress(areaId, addrIndex) {
+    if (this.state.phase === 'done') return;
+    const area  = LOCATIONS[areaId];
+    const addr  = area?.addresses[addrIndex];
+    if (!addr) return;
+
+    const key   = `${areaId}:${addr}`;
+    const entry = STORY.locations[key];
+    const back  = `<p class="back-link" onclick="Game.visitLocation('${areaId}')">&#8592; ${area.name}</p>`;
 
     // Check lock
     if (entry?.requires_state) {
       const required = [].concat(entry.requires_state);
       if (required.some(f => !this.state.flags.has(f))) {
         this.setContent(
-          `<h3>${loc.name}</h3>` +
+          back +
+          `<h3>${addr}</h3>` +
           `<p class="locked">${entry.locked_text ?? 'You have no particular reason to be here yet.'}</p>`
         );
         return;
@@ -57,37 +78,37 @@ const Game = {
     }
 
     if (entry?.text) {
-      // Apply any state flags this location sets
       [].concat(entry.sets_state ?? []).forEach(f => this.state.flags.add(f));
-
-      // Count unique useful visits
-      if (!this.state.visited.has(id)) {
-        this.state.visited.add(id);
+      if (!this.state.visited.has(key)) {
+        this.state.visited.add(key);
         this.updateScore();
       }
-
-      this.markPin(id, 'visited');
-      this.setContent(`<h3>${loc.name}</h3><p>${this.fmt(entry.text)}</p>`);
+      this.markPin(areaId);
+      this.setContent(back + `<h3>${addr}</h3><p>${this.fmt(entry.text)}</p>`);
     } else {
-      // Blank location
-      if (!this.state.checked.has(id)) {
-        this.state.checked.add(id);
+      if (!this.state.checked.has(key)) {
+        this.state.checked.add(key);
         this.updateScore();
       }
-      this.markPin(id, 'checked');
+      this.markPin(areaId);
       this.setContent(
-        `<h3>${loc.name}</h3>` +
+        back +
+        `<h3>${addr}</h3>` +
         `<p class="muted">There is nothing here relevant to your investigation.</p>`
       );
     }
   },
 
-  markPin(id, cls) {
-    const pin = document.getElementById(`pin-${id}`);
-    if (pin) {
-      pin.classList.remove('visited', 'checked');
-      pin.classList.add(cls);
-    }
+  markPin(areaId) {
+    const pin  = document.getElementById(`pin-${areaId}`);
+    const area = LOCATIONS[areaId];
+    if (!pin || !area) return;
+    const anyVisited = area.addresses.some(addr => {
+      const key = `${areaId}:${addr}`;
+      return this.state.visited.has(key) || this.state.checked.has(key);
+    });
+    if (anyVisited) pin.classList.add('explored');
+    else pin.classList.remove('explored');
   },
 
   // ── Case File (intro) ────────────────────────────────────────────────────
@@ -168,7 +189,7 @@ const Game = {
     const queryTokens = this.normalise(raw).split(' ').filter(Boolean);
     const matches = [];
 
-    for (const [name, locId] of Object.entries(STORY.directory)) {
+    for (const [name, entry] of Object.entries(this._directory)) {
       const entryTokens = this.normalise(name).split(' ').filter(Boolean);
       let fuzzy = false;
       let allMatched = true;
@@ -181,7 +202,7 @@ const Game = {
         if (bestDist > 0) fuzzy = true;
       }
 
-      if (allMatched) matches.push({ name, locId, fuzzy });
+      if (allMatched) matches.push({ name, entry, fuzzy });
     }
 
     // Exact (non-fuzzy) matches first
@@ -191,11 +212,12 @@ const Game = {
       result.innerHTML =
         `<div class="dir-result muted">No listing found for &#8220;${raw}&#8221;.</div>`;
     } else {
-      result.innerHTML = matches.map(({ name, locId, fuzzy }) => {
-        const locName = LOCATIONS[locId]?.name ?? 'Unknown';
+      result.innerHTML = matches.map(({ name, entry, fuzzy }) => {
+        const areaName = LOCATIONS[entry.area]?.name ?? 'Unknown';
         return `<div class="dir-result">` +
-          `<strong>${name}</strong> — Location <strong>${locId}</strong>, ${locName}.` +
+          `<strong>${name}</strong> — ${entry.address}, ${areaName}.` +
           (fuzzy ? ` <span class="muted">(closest match)</span>` : '') +
+          `<br><span class="dir-goto" onclick="Game.visitLocation('${entry.area}')">Go to area &#8594;</span>` +
           `</div>`;
       }).join('');
     }
@@ -323,9 +345,12 @@ const Game = {
       this.state.flags     = new Set(data.f);
       this.state.phase     = data.p === 'done' ? 'done' : 'playing';
 
-      // Restore pin colours
-      for (const id of this.state.visited) this.markPin(id, 'visited');
-      for (const id of this.state.checked) this.markPin(id, 'checked');
+      // Restore area pin states
+      const exploredAreas = new Set([
+        ...[...this.state.visited].map(k => k.split(':')[0]),
+        ...[...this.state.checked].map(k => k.split(':')[0])
+      ]);
+      for (const areaId of exploredAreas) this.markPin(areaId);
 
       const total = this.state.visited.size + this.state.checked.size + this.state.informants.size;
       this.updateScore();

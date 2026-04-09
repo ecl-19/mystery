@@ -157,22 +157,9 @@ body {
   display: block;
 }
 
-.pin.visited {
-  background: #3a7a3a;
-  border-color: #1a5a1a;
-}
-
-.pin.visited .pin-num {
-  color: #c0f0c0;
-}
-
-.pin.checked {
-  background: #3a3028;
-  border-color: #1a1810;
-}
-
-.pin.checked .pin-num {
-  color: #7a6040;
+.pin.explored {
+  border-color: #5a8a5a;
+  box-shadow: 0 0 0 2px rgba(90, 138, 90, 0.3);
 }
 
 /* ── Side panel ── */
@@ -325,6 +312,69 @@ body {
 
 .list-item:hover {
   background: #e8d4b0;
+}
+
+/* ── Address list ── */
+
+.address-list {
+  margin-top: 8px;
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid #c9a84c;
+  margin-bottom: 4px;
+  font-size: 0.84rem;
+  background: #f8ead0;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.address-item:hover {
+  background: #e8d4b0;
+}
+
+.addr-marker {
+  width: 14px;
+  text-align: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.address-item.addr-visited { color: #1a3a1a; }
+.address-item.addr-visited .addr-marker { color: #2a7a2a; font-weight: bold; }
+.address-item.addr-checked { color: #6a5a40; }
+.address-item.addr-checked .addr-marker { color: #8a7050; }
+
+/* ── Back link ── */
+
+.back-link {
+  font-size: 0.8rem;
+  color: #7a5a20;
+  cursor: pointer;
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+.back-link:hover {
+  color: #5a3a10;
+  text-decoration: underline;
+}
+
+/* ── Directory goto link ── */
+
+.dir-goto {
+  font-size: 0.78rem;
+  color: #5a2000;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+}
+
+.dir-goto:hover {
+  text-decoration: underline;
 }
 
 /* ── Directory ── */
