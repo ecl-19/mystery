@@ -124,7 +124,7 @@ window.LOCATIONS = {
       "3 Birdcage Walk",
       "12 Birdcage Walk",
       "The Treasury, Whitehall",
-      "22 Great George Street",
+      "White's Club, St James's Street",
       "The Westminster Palace Hotel, Victoria Street",
       "St James's Palace, St James's"
     ]

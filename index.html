@@ -3,63 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mystery</title>
+  <title>The Consulting Detective</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    #landing {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    #landing-title {
+      font-size: 1.6rem;
+      color: #c9a84c;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 6px;
+      font-weight: normal;
+    }
+
+    #landing-subtitle {
+      font-size: 0.82rem;
+      color: #7a6848;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    #case-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .case-card {
+      background: #0d0a05;
+      border: 1px solid #5a4820;
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+
+    .case-card:hover {
+      border-color: #c9a84c;
+      background: #120e06;
+    }
+
+    .case-num {
+      font-size: 0.7rem;
+      color: #7a6040;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .case-name {
+      font-size: 1.05rem;
+      color: #c9a84c;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .case-tagline {
+      font-size: 0.82rem;
+      color: #a09070;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .case-arrow {
+      display: block;
+      text-align: right;
+      font-size: 0.78rem;
+      color: #5a4820;
+      margin-top: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .case-card:hover .case-arrow {
+      color: #c9a84c;
+    }
+  </style>
 </head>
 <body>
-  <div id="app">
+  <div id="landing">
+    <h1 id="landing-title">The Consulting Detective</h1>
+    <p id="landing-subtitle">London, 1895 — Select your case</p>
 
-    <header id="header">
-      <h1 id="case-title">Loading...</h1>
-      <span id="score-display"></span>
-    </header>
+    <div id="case-list">
 
-    <main id="main">
+      <a class="case-card" href="game.html?case=1">
+        <div class="case-num">Case One</div>
+        <div class="case-name">The Aldgate Cipher</div>
+        <div class="case-tagline">A cryptographer is found dead in his Aldgate lodgings. His cipher notes are missing. A half-written letter names only the initial "V."</div>
+        <span class="case-arrow">Begin investigation &#8594;</span>
+      </a>
 
-      <section id="map-panel">
-        <div id="map-container">
-          <img id="map-img" src="map.png" alt="Map"
-            onerror="document.getElementById('map-container').style.display='none'; document.getElementById('map-missing').style.display='flex'">
-          <div id="pins-layer"></div>
-        </div>
-        <div id="map-missing">
-          <p>Place your map image as <strong>map.png</strong><br>in the game folder, then reload.</p>
-        </div>
-      </section>
+      <a class="case-card" href="game.html?case=2">
+        <div class="case-num">Case Two</div>
+        <div class="case-name">The Woodhouse Affair</div>
+        <div class="case-tagline">A City banker dies at dinner in St James's. His will is undisturbed. His physician is satisfied. His solicitor is not.</div>
+        <span class="case-arrow">Begin investigation &#8594;</span>
+      </a>
 
-      <aside id="side-panel">
-        <nav id="action-bar">
-          <button class="action-btn" onclick="Game.showIntro()">Case File</button>
-          <button class="action-btn" onclick="Game.showNewspapers()">Newspapers</button>
-          <button class="action-btn" onclick="Game.showDirectory()">Directory</button>
-          <button class="action-btn" onclick="Game.showInformants()">Informants</button>
-          <button class="action-btn solve" onclick="Game.startSolve()">Solve Case</button>
-        </nav>
-        <div id="text-panel">
-          <div id="text-content"></div>
-        </div>
-        <div id="save-bar">
-          <button onclick="Game.showSave()">Save Game</button>
-          <button onclick="Game.showLoad()">Load Game</button>
-        </div>
-      </aside>
-
-    </main>
-  </div>
-
-  <!-- Newspaper modal -->
-  <div id="newspaper-overlay" onclick="Game.closeNewspaper()">
-    <div id="newspaper-modal" onclick="event.stopPropagation()">
-      <div id="newspaper-closebar">
-        <button id="newspaper-close" onclick="Game.closeNewspaper()">&#x2715; Close</button>
-      </div>
-      <div id="newspaper-content"></div>
     </div>
   </div>
-
-  <script src="locations.js"></script>
-  <script src="directory.js"></script>
-  <script src="stories/case1.js"></script>
-  <script src="game.js"></script>
 </body>
 </html>

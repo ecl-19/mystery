@@ -10,7 +10,8 @@ const Game = {
 
   // ── Startup ──────────────────────────────────────────────────────────────
 
-  init() {
+  init(caseId) {
+    this._caseId   = String(caseId);
     this._directory = Object.assign({}, window.DIRECTORY ?? {}, STORY.directory ?? {});
     document.getElementById('case-title').textContent = STORY.meta.title;
     this.renderPins();
@@ -297,6 +298,7 @@ const Game = {
 
   showSave() {
     const code = btoa(JSON.stringify({
+      c: this._caseId,
       v: [...this.state.visited],
       k: [...this.state.checked],
       i: [...this.state.informants],
@@ -338,6 +340,13 @@ const Game = {
     try {
       const data = JSON.parse(atob(raw));
       if (!Array.isArray(data.v) || !Array.isArray(data.f)) throw new Error();
+      if (data.c && data.c !== this._caseId) {
+        this.setContent(
+          `<h2>Load Failed</h2>` +
+          `<p class="locked">That save is for a different case. Please open the correct case and load it there.</p>`
+        );
+        return;
+      }
 
       this.state.visited   = new Set(data.v);
       this.state.checked   = new Set(data.k ?? []);
@@ -410,4 +419,4 @@ const Game = {
   }
 };
 
-window.addEventListener('load', () => Game.init());
+// Game.init(caseId) is called by game.html after the story script loads dynamically.
