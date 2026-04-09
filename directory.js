@@ -24,39 +24,41 @@ window.DIRECTORY = {
   "Tindall, Mr. George":       { area: "1", address: "15 Dorset Street" },
   "Beaumont, Dr. James":       { area: "1", address: "55 Baker Street" },      // not on map
 
-  // ── Regent's Park & Euston (Area 2) ─────────────────────────────────────
+  // ── Euston (Area 2) ──────────────────────────────────────────────────────
 
-  "Prescott, Colonel George":  { area: "2", address: "4 Park Crescent" },
-  "Morstan, Captain Arthur":   { area: "2", address: "17 Park Crescent" },
+  "Prescott, Colonel George":  { area: "2", address: "14 Euston Square" },
+  "Morstan, Captain Arthur":   { area: "2", address: "3 Euston Road" },
   "Rycroft, Mr. James":        { area: "2", address: "7 Euston Square" },
   "Rycroft, Mrs. Clara":       { area: "2", address: "7 Euston Square" },
-  "Alderton, Rev. Thomas":     { area: "2", address: "18 Albany Street" },
-  "Pendleton, Mrs. Frances":   { area: "2", address: "3 Chester Terrace" },
-  "Pendleton, Mr. Robert":     { area: "2", address: "3 Chester Terrace" },
-  "Lestrange, Mr. Harold":     { area: "2", address: "31 Robert Street" },
-  "Mackay, Dr. Alistair":      { area: "2", address: "42 Albany Street" },     // not on map
+  "Alderton, Rev. Thomas":     { area: "2", address: "22 Gower Street" },
+  "Pendleton, Mrs. Frances":   { area: "2", address: "9 Warren Street" },
+  "Pendleton, Mr. Robert":     { area: "2", address: "9 Warren Street" },
+  "Lestrange, Mr. Harold":     { area: "2", address: "7 Hampstead Road" },
+  "Mackay, Dr. Alistair":      { area: "2", address: "42 Euston Road" },       // not on map
 
-  // ── Paddington & Bayswater (Area 3) ─────────────────────────────────────
+  // ── Hyde Park & Piccadilly (Area 3) ─────────────────────────────────────
 
-  "Wingate, Mr. Percy":        { area: "3", address: "14 Praed Street" },
-  "Wingate, Mrs. Dorothy":     { area: "3", address: "14 Praed Street" },
-  "Fairfax, Mrs. Eleanor":     { area: "3", address: "22 Sussex Gardens" },
-  "Trevalyan, Mr. Arthur":     { area: "3", address: "3 Westbourne Terrace" },
-  "Collingwood, Mr. Nat.":     { area: "3", address: "17 Westbourne Terrace" },
-  "Napper, Miss Rose":         { area: "3", address: "9 Westbourne Park Road" },
-  "Dobbins, Mr. Francis":      { area: "3", address: "4 Inverness Terrace" },
-  "Hartley, Mr. Charles":      { area: "3", address: "62 Praed Street" },      // not on map
+  "Wingate, Mr. Percy":        { area: "3", address: "14 Park Lane" },
+  "Wingate, Mrs. Dorothy":     { area: "3", address: "14 Park Lane" },
+  "Fairfax, Mrs. Eleanor":     { area: "3", address: "7 Grosvenor Square" },
+  "Trevalyan, Mr. Arthur":     { area: "3", address: "7 Half Moon Street" },
+  "Collingwood, Mr. Nat.":     { area: "3", address: "19 Half Moon Street" },
+  "Napper, Miss Rose":         { area: "3", address: "33 Piccadilly" },
+  "Dobbins, Mr. Francis":      { area: "3", address: "14 Piccadilly" },
+  "Hartley, Mr. Charles":      { area: "3", address: "62 Park Lane" },         // not on map
 
-  // ── Kensington & Hyde Park (Area 4) ─────────────────────────────────────
+  // ── Pimlico (Area 4) ─────────────────────────────────────────────────────
 
-  "Armitage, Lord Henry":      { area: "4", address: "14 Princes Gate" },
-  "Armitage, Lady Constance":  { area: "4", address: "14 Princes Gate" },
-  "Cornwallis, Lady Augusta":  { area: "4", address: "3 Ennismore Gardens" },
-  "Fitzroy, Mr. Theodore":     { area: "4", address: "27 Cromwell Road" },
-  "Merrilow, Mrs. Sarah":      { area: "4", address: "16 Young Street" },
-  "Culverton, Sir Robert":     { area: "4", address: "22 Kensington Road" },
-  "Straker, Mr. John":         { area: "4", address: "33 Kensington Road" },
-  "Farintosh, Mrs. Violet":    { area: "4", address: "5 Kensington Gore" },    // not on map
+  "Armitage, Lord Henry":      { area: "4", address: "3 Warwick Square" },
+  "Armitage, Lady Constance":  { area: "4", address: "3 Warwick Square" },
+  "Cornwallis, Lady Augusta":  { area: "4", address: "14 Eccleston Square" },
+  "Fitzroy, Mr. Theodore":     { area: "4", address: "22 Belgrave Road" },
+  "Merrilow, Mrs. Sarah":      { area: "4", address: "9 Tachbrook Street" },
+  "Culverton, Sir Robert":     { area: "4", address: "7 St George's Square" },
+  "Straker, Mr. John":         { area: "4", address: "18 Lupus Street" },
+  "Farintosh, Mrs. Violet":    { area: "4", address: "9 Pimlico Road" },       // not on map
+  "Woodhouse, Mr. Gerald":     { area: "4", address: "14 Pimlico Road" },
+  "Woodhouse, Mrs. Clara":     { area: "4", address: "14 Pimlico Road" },
 
   // ── Westminster & St James's (Area 5) ───────────────────────────────────
 
@@ -176,18 +178,16 @@ window.DIRECTORY = {
   "Crosby, Inspector":         { area: "14", address: "18 Lambeth High Street" },
   "Ronder, Mrs. Eugenia":      { area: "14", address: "31 Vauxhall Bridge Road" }, // not on map
 
-  // ── Chelsea & Belgravia (Area 15) ────────────────────────────────────────
+  // ── Regent's Park (Area 15) ──────────────────────────────────────────────
 
-  "Bellamy, Miss Flora":       { area: "15", address: "7 Cheyne Walk" },
-  "Turner, Sir Geoffrey":      { area: "15", address: "14 Cheyne Walk" },
-  "Turner, Lady Dorothy":      { area: "15", address: "14 Cheyne Walk" },
-  "Sinclair, Lord St. Simon":  { area: "15", address: "3 Eaton Square" },
-  "Barclay, Colonel James":    { area: "15", address: "18 Pont Street" },
-  "Barclay, Mrs. Nancy":       { area: "15", address: "18 Pont Street" },
-  "Kemp, Mr. Isadora":         { area: "15", address: "33 King's Road" },
-  "Davenport, Miss Alice":     { area: "15", address: "The Cadogan Hotel, Sloane Street" },
-  "Woodhouse, Mr. Gerald":     { area: "15", address: "14 Pimlico Road" },
-  "Woodhouse, Mrs. Clara":     { area: "15", address: "14 Pimlico Road" },
-  "Adler, Miss Irene":         { area: "15", address: "47 Sloane Street" },    // not on map
+  "Bellamy, Miss Flora":       { area: "15", address: "17 Park Crescent" },
+  "Turner, Sir Geoffrey":      { area: "15", address: "4 Park Crescent" },
+  "Turner, Lady Dorothy":      { area: "15", address: "4 Park Crescent" },
+  "Sinclair, Lord St. Simon":  { area: "15", address: "3 Chester Terrace" },
+  "Barclay, Colonel James":    { area: "15", address: "The Regent's Park Barracks, Albany Street" },
+  "Barclay, Mrs. Nancy":       { area: "15", address: "18 Albany Street" },
+  "Kemp, Mr. Isadora":         { area: "15", address: "31 Robert Street" },
+  "Davenport, Miss Alice":     { area: "15", address: "9 Outer Circle" },
+  "Adler, Miss Irene":         { area: "15", address: "The Holme, Outer Circle" },  // not on map
 
 };

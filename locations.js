@@ -12,7 +12,7 @@ window.LOCATIONS = {
 
   "1": {
     name: "Baker Street & Marylebone",
-    x: 27, y: 27,
+    x: 25, y: 32,
     addresses: [
       "221B Baker Street",
       "10 Baker Street",
@@ -35,80 +35,80 @@ window.LOCATIONS = {
   },
 
   "2": {
-    name: "Regent's Park & Euston",
+    name: "Euston",
     x: 38, y: 18,
     addresses: [
-      "The Zoological Gardens, Outer Circle",
-      "4 Park Crescent",
-      "17 Park Crescent",
-      "12 Gloucester Gate",
       "Euston Station, Euston Road",
       "7 Euston Square",
       "14 Euston Square",
-      "The Crown & Anchor, Albany Street",
-      "18 Albany Street",
-      "33 Albany Street",
-      "3 Chester Terrace",
-      "11 Chester Terrace",
-      "The Regent's Park Barracks, Albany Street",
-      "22 Robert Street",
-      "31 Robert Street",
-      "The York & Albany, Parkway",
-      "9 Outer Circle"
+      "3 Euston Road",
+      "18 Euston Road",
+      "The Euston Arms, Euston Street",
+      "4 Gower Street",
+      "14 Gower Street",
+      "22 Gower Street",
+      "7 Tottenham Court Road",
+      "19 Tottenham Court Road",
+      "University College Hospital, Gower Street",
+      "3 Warren Street",
+      "9 Warren Street",
+      "The Grafton Arms, Grafton Way",
+      "7 Hampstead Road",
+      "14 Hampstead Road"
     ]
   },
 
   "3": {
-    name: "Paddington & Bayswater",
-    x: 19, y: 30,
+    name: "Hyde Park & Piccadilly",
+    x: 18, y: 46,
     addresses: [
-      "Paddington Station, Praed Street",
-      "14 Praed Street",
-      "28 Praed Street",
-      "The Fountains Abbey, Praed Street",
-      "The Great Western Hotel, Praed Street",
-      "6 Norfolk Square",
-      "14 Norfolk Square",
-      "3 Sussex Gardens",
-      "22 Sussex Gardens",
-      "3 Westbourne Terrace",
-      "17 Westbourne Terrace",
-      "9 Westbourne Park Road",
-      "4 Inverness Terrace",
-      "14 Craven Road",
-      "18 Craven Road",
-      "The Porchester Hotel, Porchester Gardens",
-      "11 Moscow Road"
+      "Apsley House, Hyde Park Corner",
+      "The Hyde Park Hotel, Knightsbridge",
+      "14 Park Lane",
+      "22 Park Lane",
+      "7 Grosvenor Square",
+      "14 Grosvenor Square",
+      "The Grosvenor Hotel, Park Lane",
+      "14 Piccadilly",
+      "33 Piccadilly",
+      "Albany, Piccadilly",
+      "The Royal Academy, Piccadilly",
+      "The Cavalry Club, Piccadilly",
+      "7 Half Moon Street",
+      "19 Half Moon Street",
+      "The Naval & Military Club, Piccadilly",
+      "7 Curzon Street",
+      "The Bath Hotel, Piccadilly"
     ]
   },
 
   "4": {
-    name: "Kensington & Hyde Park",
-    x: 18, y: 46,
+    name: "Pimlico",
+    x: 18, y: 82,
     addresses: [
-      "The Natural History Museum, Cromwell Road",
-      "14 Cromwell Road",
-      "27 Cromwell Road",
-      "7 Exhibition Road",
-      "19 Exhibition Road",
-      "The Royal Albert Hall, Kensington Gore",
-      "8 Princes Gate",
-      "14 Princes Gate",
-      "3 Ennismore Gardens",
-      "The Hyde Park Hotel, Knightsbridge",
-      "22 Kensington Road",
-      "33 Kensington Road",
-      "The Kensington Arms, Wright's Lane",
-      "The Kensington Registry Office, Marloes Road",
-      "16 Young Street",
-      "The Leighton House, Holland Park Road",
-      "9 Pemberton Gardens"
+      "Victoria Station, Victoria Street",
+      "14 Pimlico Road",
+      "22 Pimlico Road",
+      "3 Warwick Square",
+      "14 Warwick Square",
+      "The Warwick Arms, Warwick Way",
+      "7 Eccleston Square",
+      "14 Eccleston Square",
+      "9 Belgrave Road",
+      "22 Belgrave Road",
+      "3 Lupus Street",
+      "18 Lupus Street",
+      "The Morpeth Arms, Millbank",
+      "4 Tachbrook Street",
+      "9 Tachbrook Street",
+      "3 St George's Square",
+      "7 St George's Square"
     ]
   },
 
   "5": {
     name: "Westminster & St James's",
-    x: 40, y: 70,
+    x: 29, y: 68,
     addresses: [
       "Scotland Yard, Whitehall",
       "14 Whitehall",
@@ -132,7 +132,7 @@ window.LOCATIONS = {
 
   "6": {
     name: "Strand & Trafalgar Square",
-    x: 46, y: 64,
+    x: 38, y: 52,
     addresses: [
       "The National Gallery, Trafalgar Square",
       "14 Villiers Street",
@@ -156,7 +156,7 @@ window.LOCATIONS = {
 
   "7": {
     name: "Holborn & Covent Garden",
-    x: 51, y: 57,
+    x: 48, y: 38,
     addresses: [
       "Covent Garden Market",
       "3 Drury Lane",
@@ -180,7 +180,7 @@ window.LOCATIONS = {
 
   "8": {
     name: "Fleet Street & Temple",
-    x: 54, y: 59,
+    x: 52, y: 48,
     addresses: [
       "17 Fleet Street",
       "23 Fleet Street",
@@ -204,7 +204,7 @@ window.LOCATIONS = {
 
   "9": {
     name: "The City",
-    x: 60, y: 54,
+    x: 70, y: 51,
     addresses: [
       "St Paul's Cathedral, Ludgate Hill",
       "The Old Bailey, Newgate Street",
@@ -228,7 +228,7 @@ window.LOCATIONS = {
 
   "10": {
     name: "Aldgate & Whitechapel",
-    x: 70, y: 51,
+    x: 81, y: 40,
     addresses: [
       "3 Aldgate High Street",
       "14 Aldgate High Street",
@@ -252,7 +252,7 @@ window.LOCATIONS = {
 
   "11": {
     name: "Shoreditch & Bethnal Green",
-    x: 64, y: 38,
+    x: 74, y: 24,
     addresses: [
       "14 Shoreditch High Street",
       "31 Shoreditch High Street",
@@ -276,7 +276,7 @@ window.LOCATIONS = {
 
   "12": {
     name: "Islington & King's Cross",
-    x: 50, y: 28,
+    x: 59, y: 14,
     addresses: [
       "King's Cross Station, Euston Road",
       "3 Pentonville Road",
@@ -300,7 +300,7 @@ window.LOCATIONS = {
 
   "13": {
     name: "London Bridge & Southwark",
-    x: 63, y: 67,
+    x: 63, y: 73,
     addresses: [
       "London Bridge Station",
       "7 Borough High Street",
@@ -324,7 +324,7 @@ window.LOCATIONS = {
 
   "14": {
     name: "Lambeth & Vauxhall",
-    x: 44, y: 77,
+    x: 41, y: 77,
     addresses: [
       "Lambeth Palace",
       "3 Lambeth Walk",
@@ -347,26 +347,26 @@ window.LOCATIONS = {
   },
 
   "15": {
-    name: "Chelsea & Belgravia",
-    x: 29, y: 68,
+    name: "Regent's Park",
+    x: 27, y: 18,
     addresses: [
-      "7 Cheyne Walk",
-      "14 Cheyne Walk",
-      "The Chelsea Arts Club, Old Church Street",
-      "7 Sloane Square",
-      "22 King's Road",
-      "33 King's Road",
-      "The Six Bells, King's Road",
-      "3 Eaton Square",
-      "14 Eaton Square",
-      "The Cadogan Hotel, Sloane Street",
-      "3 Pont Street",
-      "18 Pont Street",
-      "9 Pimlico Road",
-      "22 Pimlico Road",
-      "4 Royal Hospital Road",
-      "The Chelsea Physic Garden, Swan Walk",
-      "The Surprise, Christchurch Terrace"
+      "The Zoological Gardens, Outer Circle",
+      "4 Park Crescent",
+      "17 Park Crescent",
+      "9 Outer Circle",
+      "3 Outer Circle",
+      "12 Gloucester Gate",
+      "7 Park Road",
+      "14 Park Road",
+      "3 Chester Terrace",
+      "11 Chester Terrace",
+      "The Regent's Park Barracks, Albany Street",
+      "18 Albany Street",
+      "33 Albany Street",
+      "22 Robert Street",
+      "31 Robert Street",
+      "The York & Albany, Parkway",
+      "The Regent's Park Café, Inner Circle"
     ]
   }
 
