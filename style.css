@@ -639,3 +639,111 @@ body {
 .np-body p + p {
   text-indent: 1.2em;
 }
+
+/* ── Mobile tabs (hidden on desktop) ────────────────────────────────────── */
+
+#mobile-tabs {
+  display: none;
+}
+
+/* ── Mobile layout ───────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+
+  #mobile-tabs {
+    display: flex;
+    flex: 0 0 auto;
+    background: #0d0a05;
+    border-bottom: 2px solid #c9a84c;
+  }
+
+  .mob-tab {
+    flex: 1;
+    padding: 11px 8px;
+    background: #0d0a05;
+    color: #7a6040;
+    border: none;
+    border-right: 1px solid #2a1e0a;
+    font-family: Georgia, serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .mob-tab:last-child {
+    border-right: none;
+  }
+
+  .mob-tab.mob-active {
+    color: #c9a84c;
+    background: #120e06;
+  }
+
+  /* Map hidden by default on mobile; shown when #app has .mob-map class */
+  #map-panel {
+    display: none;
+  }
+
+  #app.mob-map #map-panel {
+    display: flex;
+    flex: 1;
+  }
+
+  #app.mob-map #side-panel {
+    display: none;
+  }
+
+  #side-panel {
+    flex: 1;
+    border-left: none;
+    min-width: 0;
+  }
+
+  /* Map image: subtract header (48px) + tab bar (44px) */
+  #map-img {
+    max-height: calc(100vh - 92px);
+  }
+
+  /* Larger pins for touch */
+  .pin {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pin-num {
+    font-size: 10px;
+  }
+
+  /* More comfortable touch targets for address items */
+  .address-item {
+    padding: 10px 10px;
+    font-size: 0.88rem;
+  }
+
+  /* Action bar: tighten text to fit on narrow screens */
+  .action-btn {
+    font-size: 0.76rem;
+    padding: 11px 4px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Newspaper modal full-screen on mobile */
+  #newspaper-overlay {
+    padding: 0;
+  }
+
+  #newspaper-modal {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  #newspaper-content {
+    padding: 4px 18px 28px;
+  }
+
+  .np-articles {
+    column-count: 1;
+  }
+
+}

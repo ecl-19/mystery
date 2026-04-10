@@ -40,6 +40,7 @@ const Game = {
 
   visitLocation(areaId) {
     if (this.state.phase === 'done') return;
+    this.showTab('content');
     const area = LOCATIONS[areaId];
     if (!area) return;
 
@@ -393,6 +394,14 @@ const Game = {
 
   fmt(text) {
     return (text ?? '').replace(/\n/g, '<br>');
+  },
+
+  showTab(tab) {
+    const app = document.getElementById('app');
+    if (!app) return;
+    app.classList.toggle('mob-map', tab === 'map');
+    document.getElementById('mob-tab-map')?.classList.toggle('mob-active', tab === 'map');
+    document.getElementById('mob-tab-content')?.classList.toggle('mob-active', tab !== 'map');
   },
 
   escapeHtml(str) {
