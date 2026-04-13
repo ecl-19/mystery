@@ -8,7 +8,7 @@ A browser-based interactive mystery game inspired by the mechanics of *Sherlock 
 
 1. Select a case from the landing page
 2. Read the **Case File** for the scenario briefing
-3. Use the tools in the right panel to investigate:
+3. Use the tools to investigate:
    - **Newspapers** — read press coverage for leads and background
    - **Directory** — look up a person or establishment by name to find their area and address
    - **Informants** — consult contacts for tips
@@ -19,6 +19,8 @@ A browser-based interactive mystery game inspired by the mechanics of *Sherlock 
 Your score is the number of locations visited (including blank ones) and informants consulted. The fewer the better.
 
 **Save / Load** — save your progress as a code string at any point and paste it back to resume. Save codes are case-specific; a save from one case cannot be loaded into another.
+
+**Mobile** — on small screens the layout switches to a two-tab view: Investigation (text panel, action buttons) and Map. Tapping a map pin automatically switches to the Investigation tab.
 
 ---
 
@@ -103,7 +105,7 @@ Addresses not listed in the story file show a blank "nothing relevant" message a
 }
 ```
 
-Articles open in a modal overlay styled as a Victorian newspaper (two-column layout). Include one relevant article and several red herrings per paper.
+Articles open in a modal overlay styled as a Victorian newspaper (two-column layout on desktop, single column on mobile). Include one relevant article and several red herrings per paper.
 
 ### Directory
 
